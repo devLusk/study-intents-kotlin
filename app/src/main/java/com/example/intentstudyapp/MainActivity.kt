@@ -2,6 +2,7 @@ package com.example.intentstudyapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,8 +24,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnNext.setOnClickListener {
-            val myIntent = Intent(this, MainActivity2::class.java)
-            startActivity(myIntent)
+            val enteredText = binding.etName.text.toString()
+            val firstIntent = Intent(this, MainActivity2::class.java).apply {
+                putExtra("text_main", enteredText)
+            }
+
+            startActivity(firstIntent)
         }
     }
 }

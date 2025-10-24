@@ -22,9 +22,12 @@ class MainActivity2 : AppCompatActivity() {
             insets
         }
 
+        val receivedText = intent.getStringExtra("text_main")
+        binding.tvMainResult.text = "${binding.tvMainResult.text} $receivedText"
+
         binding.btnBack.setOnClickListener {
-            val myIntent = Intent(this, MainActivity::class.java)
-            startActivity(myIntent)
+            val secondIntent = Intent(this, MainActivity::class.java)
+            setResult()
         }
     }
 }
