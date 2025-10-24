@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -29,28 +30,28 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                Log.i("LOG", "Result OK")
+
+                val data = result.data
+                val backText = data?.getStringExtra("back_text")
+
+                binding.etName.setText(backText)
+            } else {
+                Log.i("LOG", "Result not OK")
+            }
+        }
+
         binding.btnNext.setOnClickListener {
             val enteredText = binding.etName.text.toString()
             val firstIntent = Intent(this, MainActivity2::class.java).apply {
                 putExtra("text_main", enteredText)
             }
 
-            startActivityForResult(firstIntent, REQUEST_CODE)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                Log.i("LOG", "Result OK")
-                val backText = data?.getStringExtra("back_text")
-
-                binding.etName.setText(backText)
-            } else  {
-                Log.i("LOG", "Result not OK")
-            }
+            activityResultLauncher.launch(firstIntent)
         }
     }
 }
