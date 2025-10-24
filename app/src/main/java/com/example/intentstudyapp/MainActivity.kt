@@ -1,13 +1,17 @@
 package com.example.intentstudyapp
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.intentstudyapp.databinding.ActivityMainBinding
+
+const val REQUEST_CODE = 1
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +33,19 @@ class MainActivity : AppCompatActivity() {
                 putExtra("text_main", enteredText)
             }
 
-            startActivity(firstIntent)
+            startActivityForResult(firstIntent, REQUEST_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Log.i("LOG", "Result OK")
+            } else  {
+                Log.i("LOG", "Result not OK")
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.example.intentstudyapp
 
-import android.content.Intent
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,11 +23,12 @@ class MainActivity2 : AppCompatActivity() {
         }
 
         val receivedText = intent.getStringExtra("text_main")
+
         binding.tvMainResult.text = "${binding.tvMainResult.text} $receivedText"
 
         binding.btnBack.setOnClickListener {
-            val secondIntent = Intent(this, MainActivity::class.java)
-            setResult()
+            setResult(Activity.RESULT_CANCELED)
+            finish()
         }
     }
 }
