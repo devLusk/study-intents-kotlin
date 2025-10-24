@@ -1,6 +1,7 @@
 package com.example.intentstudyapp
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,10 +25,13 @@ class MainActivity2 : AppCompatActivity() {
 
         val receivedText = intent.getStringExtra("text_main")
 
-        binding.tvMainResult.text = "${binding.tvMainResult.text} $receivedText"
+        binding.etName.setText(receivedText)
 
         binding.btnBack.setOnClickListener {
-            setResult(Activity.RESULT_CANCELED)
+            val enteredText = binding.etName.text.toString()
+            val intent = Intent().putExtra("back_text", enteredText)
+
+            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }

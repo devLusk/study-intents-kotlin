@@ -14,11 +14,13 @@ import com.example.intentstudyapp.databinding.ActivityMainBinding
 const val REQUEST_CODE = 1
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -43,6 +45,9 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Log.i("LOG", "Result OK")
+                val backText = data?.getStringExtra("back_text")
+
+                binding.etName.setText(backText)
             } else  {
                 Log.i("LOG", "Result not OK")
             }

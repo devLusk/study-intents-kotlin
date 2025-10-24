@@ -18,12 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_main_result"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Text from Activity 1:"
-        android:textSize="15sp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:hint="Enter a Text"
         app:layout_constraintBottom_toTopOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
