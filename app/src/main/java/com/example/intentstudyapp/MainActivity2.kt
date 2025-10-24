@@ -6,14 +6,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.intentstudyapp.databinding.ActivityMainBinding
+import com.example.intentstudyapp.databinding.ActivityMain2Binding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnNext.setOnClickListener {
-            val myIntent = Intent(this, MainActivity2::class.java)
+        binding.btnBack.setOnClickListener {
+            val myIntent = Intent(this, MainActivity::class.java)
             startActivity(myIntent)
         }
     }
